@@ -14,7 +14,7 @@ export function CoreDomainFacade(reader: CoreDomainDrivenPort): CoreDomainDriver
         return MapperService.mapToCountryEntities(response['data']);
     }
 
-    async function getCountryReport(countryName: string): Promise<CountryReportDTO[]> {
+    async function getCountryReport(countryName: string): Promise<CountryReportDTO> {
         const response = await reader.get(`${ReaderResources.Country}/${countryName}`);
 
         // @ts-ignore
