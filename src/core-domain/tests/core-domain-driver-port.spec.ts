@@ -1,8 +1,5 @@
 import {describe, it, expect, vi} from "vitest";
-import {CoreDomainFacade} from "@/core-domain/core-domain.facade";
-import {RestClientAdapter} from "@/adapters/rest-client.adapter";
-
-const service = CoreDomainFacade(RestClientAdapter());
+import CoreDomain from "@/core-domain";
 
 describe('Core Domain Tests', () => {
 
@@ -11,8 +8,8 @@ describe('Core Domain Tests', () => {
 
         it('getAllCountries should return a list of all available countries', async () => {
 
-            const spy = vi.spyOn(service, 'getAllCountries');
-            const result = await service.getAllCountries();
+            const spy = vi.spyOn(CoreDomain, 'getAllCountries');
+            const result = await CoreDomain.getAllCountries();
 
             expect(spy).toHaveBeenCalled();
             expect(spy).toHaveBeenCalledOnce();
@@ -27,8 +24,8 @@ describe('Core Domain Tests', () => {
 
         it('getCountryReport should return report information of selected country since day one', async () => {
 
-            const spy = vi.spyOn(service, 'getCountryReport');
-            const result = await service.getCountryReport('Portugal');
+            const spy = vi.spyOn(CoreDomain, 'getCountryReport');
+            const result = await CoreDomain.getCountryReport('Portugal');
 
             expect(spy).toHaveBeenCalled();
             expect(spy).toHaveBeenCalledOnce();

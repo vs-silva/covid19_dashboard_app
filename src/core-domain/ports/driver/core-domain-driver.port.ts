@@ -3,5 +3,5 @@ import type {CountryReportDTO} from "@/core-domain/dtos/country-report.dto";
 
 export interface CoreDomainDriverPort {
     getAllCountries(): Promise<CountryDTO[]>;
-    getCountryReport(countryName: string): Promise<CountryReportDTO[]>;
+    getCountryReport(countryName: string): Promise<CountryReportDTO>;
 }

@@ -6,10 +6,6 @@ import router from './router';
 
 import './assets/main.css';
 
-import CoreDomain from './core-domain';
-
-console.log(CoreDomain);
-
 const app = createApp(App);
 
 app.use(createPinia());
