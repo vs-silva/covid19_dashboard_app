@@ -34,7 +34,7 @@ domainStore.getCountries();
 let canStop = false;
 const stop = watchEffect(() => {
   if(countries.value[0]){
-    domainStore.getCountryReport(countries.value[0].country);
+    domainStore.getCountryReport(countries.value[0].slug);
   }
 });
 

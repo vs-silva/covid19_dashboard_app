@@ -19,7 +19,7 @@ export function CoreDomainFacade(reader: CoreDomainDrivenPort): CoreDomainDriver
         // @ts-ignore
         const data = response['data'];
 
-        if(!data) {
+        if(!data.length) {
             return <CountryReportDTO>{
               country: '',
               countryCode: '',
