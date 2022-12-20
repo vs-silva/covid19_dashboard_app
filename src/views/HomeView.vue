@@ -47,7 +47,5 @@ Eventbus.emitter.on(Eventbus.eventType.countryReport, async countryName =>  {
 
 
 <style scoped>
-.container{
-  display: flex;
-}
+
 </style>
