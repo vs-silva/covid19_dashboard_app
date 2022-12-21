@@ -1,4 +1,4 @@
-import type {ChartDTO} from "@/chart-manager/dtos/chartDTO";
+import type {ChartDTO} from "@/chart-manager/dtos/chart.dto";
 import type {ChartDataDTO} from "@/chart-manager/dtos/chart-data.dto";
 
 export interface ChartManagerDrivenPort {

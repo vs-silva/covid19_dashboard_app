@@ -1,5 +1,5 @@
 import type {ChartManagerDrivenPort} from "@/chart-manager/ports/driven/chart-manager-driven.port";
-import type {ChartDTO} from "@/chart-manager/dtos/chartDTO";
+import type {ChartDTO} from "@/chart-manager/dtos/chart.dto";
 import type {ChartDataDTO} from "@/chart-manager/dtos/chart-data.dto";
 import Chart from 'chart.js/auto';
 
@@ -31,12 +31,6 @@ export function ChartEngineAdapter(): ChartManagerDrivenPort {
         });
     }
 
-    function clearChart(chart: any): any {
-        chart.data.labels = [];
-        chart.data.datasets = [];
-        chart.update();
-    }
-
     function updateChart(chart: any, chartData: ChartDataDTO) {
         clearChart(chart);
 
@@ -51,9 +45,15 @@ export function ChartEngineAdapter(): ChartManagerDrivenPort {
         chart.update();
     }
 
+    function clearChart(chart: any): any {
+        chart.data.labels = [];
+        chart.data.datasets = [];
+        chart.update();
+    }
+
     return {
         createChart,
-        clearChart,
-        updateChart
+        updateChart,
+        clearChart
     };
 }
