@@ -1,16 +1,55 @@
 <template>
-  <h1>{{country.country}} - {{country.countryCode}}</h1>
-  <div>{{country.reports}}</div>
+  <h1>{{country.country}}</h1>
+
+  <div id="active-chart-canvas-container">
+    <canvas ref="activeChartCanvas" />
+  </div>
+
+  <div id="confirmed-chart-canvas-container">
+    <canvas ref="confirmedChartCanvas" />
+  </div>
+
+  <div id="recovered-chart-canvas-container">
+    <canvas ref="recoveredChartCanvas" />
+  </div>
+
+  <div id="deaths-chart-canvas-container">
+    <canvas ref="deathsChartCanvas" />
+  </div>
+
 </template>
 
 <script setup lang="ts">
-
+import {ref, watchEffect} from 'vue';
+import ChartManager from "@/chart-manager";
 const props = defineProps({
   country: {
     type: Object,
     required: false,
     default: () => {}
   }
+});
+
+const activeChartCanvas = ref('');
+const confirmedChartCanvas = ref('');
+const recoveredChartCanvas = ref('');
+const deathsChartCanvas = ref('');
+
+watchEffect(() => {
+  if(!activeChartCanvas.value || !props.country.reports){
+    return;
+  }
+
+  ChartManager.service.createChart(
+      [activeChartCanvas.value,
+          confirmedChartCanvas.value,
+          recoveredChartCanvas.value,
+          deathsChartCanvas.value
+      ],
+      ChartManager.chartType.Bar,
+      props.country.reports
+  );
+
 });
 
 

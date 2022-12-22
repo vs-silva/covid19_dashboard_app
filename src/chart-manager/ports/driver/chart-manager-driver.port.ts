@@ -1,7 +1,5 @@
-import type {ChartDTO} from "@/chart-manager/dtos/chart.dto";
-import type {ChartDataDTO} from "@/chart-manager/dtos/chart-data.dto";
+import type {ReportDTO} from "@/core-domain/dtos/report.dto";
 
 export interface ChartManagerDriverPort {
-    createChart(chartContainer: any, chartType: ChartDTO): any;
-    updateChart(chart: any, chartData: ChartDataDTO): void;
+    createChart(chartContainers: string[], chartType: string, reportData: ReportDTO[]): void;
 }

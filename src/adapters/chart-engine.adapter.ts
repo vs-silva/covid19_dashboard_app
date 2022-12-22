@@ -1,21 +1,28 @@
 import type {ChartManagerDrivenPort} from "@/chart-manager/ports/driven/chart-manager-driven.port";
-import type {ChartDTO} from "@/chart-manager/dtos/chart.dto";
 import type {ChartDataDTO} from "@/chart-manager/dtos/chart-data.dto";
 import Chart from 'chart.js/auto';
+import type {ChartItem} from 'chart.js/auto';
 
 export function ChartEngineAdapter(): ChartManagerDrivenPort {
 
-    function createChart(chartContainer: any, chartType: ChartDTO): any {
-        return new Chart(chartContainer, {
+    let chartPool: Chart[] = [];
+
+    function createChart(chartContainer: ChartItem, type: string, chartData: ChartDataDTO):void {
+
+        if(chartPool.length === 4) {
+            for (const chart of chartPool) {
+                chart.destroy();
+            }
+
+            chartPool = [];
+        }
+
+        chartPool.push( new Chart(chartContainer, {
             // @ts-ignore
-            type: chartType.type,
+            type: type,
             data: {
-                labels:[],
-                datasets: [{
-                    label: '',
-                    data: [],
-                    backgroundColor: []
-                }]
+                labels: chartData.labels,
+                datasets: chartData.dataSets
             },
             options: {
                 responsive: true,
@@ -28,32 +35,11 @@ export function ChartEngineAdapter(): ChartManagerDrivenPort {
                     }
                 }
             }
-        });
-    }
-
-    function updateChart(chart: any, chartData: ChartDataDTO) {
-        clearChart(chart);
-
-        for (const label of chartData.labels) {
-            chart.data.labels.push(label);
-        }
-
-        for (const dataset of chartData.dataSets) {
-            chart.data.datasets.push(dataset);
-        }
-
-        chart.update();
-    }
-
-    function clearChart(chart: any): any {
-        chart.data.labels = [];
-        chart.data.datasets = [];
-        chart.update();
+        })
+        );
     }
 
     return {
-        createChart,
-        updateChart,
-        clearChart
+        createChart
     };
 }

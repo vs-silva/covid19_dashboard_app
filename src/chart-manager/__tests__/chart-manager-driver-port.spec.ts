@@ -11,13 +11,13 @@ describe('Chart Manager Tests', () => {
         it('createChart should return an instance of ChartJS', () => {
 
             const canvasElement = document.createElement('canvas');
-            canvasElement.setAttribute('id', 'chartContainer');
+            canvasElement.setAttribute('id', 'activeChartCanvas');
 
-            const spy = vi.spyOn(ChartManager.driverPort, 'createChart');
+            const spy = vi.spyOn(ChartManager.service, 'createChart');
             const type = <ChartDTO>{
                 type: ChartManager.chartType.Bar
             };
-            const chart = ChartManager.driverPort.createChart(canvasElement, type);
+            const chart = ChartManager.service.createChart(canvasElement, type);
 
             expect(spy).toHaveBeenCalled();
             expect(spy).toHaveBeenCalledOnce();
@@ -30,7 +30,7 @@ describe('Chart Manager Tests', () => {
         it('updateChart should update an existent instance of ChartJS', () => {
 
             const canvasElement = document.createElement('canvas');
-            canvasElement.setAttribute('id', 'chartContainer');
+            canvasElement.setAttribute('id', 'activeChartCanvas');
             canvasElement.setAttribute('width', '100px');
             canvasElement.setAttribute('height', '100px');
 
@@ -38,7 +38,7 @@ describe('Chart Manager Tests', () => {
                 type: ChartManager.chartType.Bar
             };
 
-            const chart = ChartManager.driverPort.createChart(canvasElement, type);
+            const chart = ChartManager.service.createChart(canvasElement, type);
 
             const chartData = {
                 labels: [faker.random.word()],
@@ -49,8 +49,8 @@ describe('Chart Manager Tests', () => {
                 }]
             };
 
-            const spy = vi.spyOn(ChartManager.driverPort, 'updateChart');
-            ChartManager.driverPort.updateChart(chart, chartData);
+            const spy = vi.spyOn(ChartManager.service, 'updateChart');
+            ChartManager.service.updateChart(chart, chartData);
 
             expect(chart).toBeDefined();
             expect(spy).toHaveBeenCalled();
