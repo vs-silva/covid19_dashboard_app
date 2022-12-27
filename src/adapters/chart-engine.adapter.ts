@@ -9,13 +9,7 @@ export function ChartEngineAdapter(): ChartManagerDrivenPort {
 
     function createChart(chartContainer: ChartItem, type: string, chartData: ChartDataDTO):void {
 
-        if(chartPool.length === 4) {
-            for (const chart of chartPool) {
-                chart.destroy();
-            }
-
-            chartPool = [];
-        }
+        clear();
 
         chartPool.push( new Chart(chartContainer, {
             // @ts-ignore
@@ -37,6 +31,17 @@ export function ChartEngineAdapter(): ChartManagerDrivenPort {
             }
         })
         );
+    }
+
+    function clear() {
+
+        if(chartPool.length >= 4) {
+            for (const chart of chartPool) {
+                chart.destroy();
+            }
+
+            chartPool = [];
+        }
     }
 
     return {
