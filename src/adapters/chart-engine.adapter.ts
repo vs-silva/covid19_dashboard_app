@@ -6,6 +6,7 @@ import type {ChartItem} from 'chart.js/auto';
 export function ChartEngineAdapter(): ChartManagerDrivenPort {
 
     let chartPool: Chart[] = [];
+    const limit = 4;
 
     function createChart(chartContainer: ChartItem, type: string, chartData: ChartDataDTO):void {
 
@@ -35,7 +36,7 @@ export function ChartEngineAdapter(): ChartManagerDrivenPort {
 
     function clear() {
 
-        if(chartPool.length >= 4) {
+        if(chartPool.length >= limit) {
             for (const chart of chartPool) {
                 chart.destroy();
             }

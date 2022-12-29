@@ -41,6 +41,8 @@ describe('Chart Manager Tests', () => {
 
         });
 
+        it.todo('createChart should clear existent chartPool before create new charts');
+
 
     });
 });
