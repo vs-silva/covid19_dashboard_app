@@ -56,7 +56,7 @@ Eventbus.emitter.on(Eventbus.eventType.countryReport, async countryName =>  {
 }
 
 #b-aside-container {
-  height: 90vh;
+  height: 88vh;
   overflow: hidden;
   min-width: 350px;
 }
