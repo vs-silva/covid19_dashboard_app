@@ -2,6 +2,7 @@
   <input
       type="text" v-model="search"
       @keyup="utils.emitChange(Eventbus.eventType.filterCountries, search)"
+      v-bind:placeholder="placeholder"
   >
 
 </template>
@@ -13,6 +14,7 @@ import {CountrySearcherUtils} from "@/components/country-searcher/country-search
 
 const utils = CountrySearcherUtils(Eventbus);
 const search = ref('');
+const placeholder = ref('search.placeholder.message');
 </script>
 
 <style scoped>
