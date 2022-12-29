@@ -1,8 +1,8 @@
 import {describe, it, expect, vi} from "vitest";
 import ChartManager from "@/chart-manager";
-import Chart from "chart.js/auto";
 import {faker} from "@faker-js/faker";
 import type {ReportDTO} from "../../core-domain/dtos/report.dto";
+
 
 describe('Chart Manager Tests', () => {
 
@@ -40,9 +40,6 @@ describe('Chart Manager Tests', () => {
             expect(spy).toHaveBeenCalledWith([canvasElement.id], type, reportData);
 
         });
-
-        it.todo('createChart should clear existent chartPool before create new charts');
-
 
     });
 });
