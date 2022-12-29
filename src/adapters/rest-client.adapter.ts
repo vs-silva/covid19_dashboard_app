@@ -5,7 +5,7 @@ export function RestClientAdapter(): CoreDomainDrivenPort {
 
     const engine = axios.create({
         baseURL: 'https://api.covid19api.com/',
-        timeout: 1000,
+        timeout: ( 60 * 1000 ),
         timeoutErrorMessage: 'Something is wrong with the endpoint'
     });
 
