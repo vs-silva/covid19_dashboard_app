@@ -30,5 +30,13 @@ a,
   margin-bottom: 20px;
 }
 
+.u-pointer-cursor {
+  cursor: pointer;
+}
+
+.u-pointer-cursor:hover {
+  color: white;
+}
+
 
 

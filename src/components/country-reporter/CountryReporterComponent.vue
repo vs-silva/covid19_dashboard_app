@@ -61,7 +61,7 @@ watchEffect(() => {
 
 <style scoped>
 #chart-main-container{
-  height: 85vh;
+  height: 83vh;
   overflow: hidden;
   overflow-y: scroll;
 }
