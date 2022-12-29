@@ -44,6 +44,8 @@ describe('Core Domain Tests', () => {
                     deaths: expect.any(Number)
                 })])
             }));
+        }, {
+            timeout: ( 30 * 1000)
         });
 
         it('getCountryReport should return an empty array if no information of selected country is provided by the server', async  () => {
