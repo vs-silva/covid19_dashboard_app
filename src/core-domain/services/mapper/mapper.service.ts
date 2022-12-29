@@ -34,7 +34,7 @@ async function  mapToCountryReportEntity(data: object[]): Promise<CountryReportD
     for (const record of data) {
         result.reports.push(<ReportDTO>{
             // @ts-ignore
-            date: record[IncomingReaderDataRequiredFields.Date],
+            date: record[IncomingReaderDataRequiredFields.Date].split('T')[0],
             // @ts-ignore
             active: record[IncomingReaderDataRequiredFields.Active],
             // @ts-ignore

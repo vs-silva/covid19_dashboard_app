@@ -1,11 +1,15 @@
 <template>
-  <h1>Countries selector component in here!</h1>
-  {{countries}}
+  <ul>
+    <li v-for="country in countriesList" v-bind:key="country['slug']">
+      <span @click="requestCountryReportData(country['slug'])">{{country['country']}}</span>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
-
+import Eventbus from "@/eventbus";
 import {CountrySelectorUtils} from "@/components/country-selector/country-selector.utils";
+import {ref, watchEffect} from "vue";
 
 const props = defineProps({
   countries: {
@@ -16,7 +20,20 @@ const props = defineProps({
 });
 
 const utils = CountrySelectorUtils();
-console.log(utils);
+const countriesList = ref([] as unknown);
+
+watchEffect(() => {
+  countriesList.value = props.countries;
+},);
+
+Eventbus.emitter.on(Eventbus.eventType.filterCountries, countryFilter => {
+  countriesList.value = utils.filterCountries(countryFilter as string, props.countries);
+});
+
+function requestCountryReportData(countryName:string) {
+  Eventbus.emitter.emit(Eventbus.eventType.countryReport, countryName);
+}
+
 </script>
 
 <style scoped>

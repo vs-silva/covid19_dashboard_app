@@ -1,5 +1,8 @@
-import {describe, it, expect, vi} from "vitest";
+import {describe, it, expect, vi, vitest} from "vitest";
 import CoreDomain from "@/core-domain";
+import type {CoreDomainDrivenPort} from "../ports/driven/core-domain-driven.port";
+import {CoreDomainFacade} from "../core-domain.facade";
+
 
 describe('Core Domain Tests', () => {
 
@@ -41,6 +44,25 @@ describe('Core Domain Tests', () => {
                     deaths: expect.any(Number)
                 })])
             }));
+        }, {
+            timeout: ( 30 * 1000)
+        });
+
+        it('getCountryReport should return an empty array if no information of selected country is provided by the server', async  () => {
+
+            const fakeReaderAdapter: CoreDomainDrivenPort = {
+              get: (resourceURL: string): Promise<object> =>  { return Promise.resolve({ data: []}); }
+            };
+
+            const fakeCoreDomainFacade = CoreDomainFacade(fakeReaderAdapter);
+
+            const spy = vi.spyOn(fakeCoreDomainFacade, 'getCountryReport');
+            const result = await fakeCoreDomainFacade.getCountryReport('Portugal');
+
+            expect(spy).toHaveBeenCalled();
+            expect(spy).toHaveBeenCalledOnce();
+            expect(result).toEqual(expect.arrayContaining([]));
+
         });
 
     });
