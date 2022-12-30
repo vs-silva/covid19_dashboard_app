@@ -39,8 +39,9 @@ export function RestClientAdapter(): CoreDomainDrivenPort {
         if(loaderPool.length) {
             if(!isLoaderActive) {
                 loader.show({
+                    "overlayBackgroundColor": "#000000",
                     "spinnerIcon": "square-loader",
-                    "overlayOpacity": "0.9",
+                    "overlayOpacity": "0.5",
                     "spinnerColor": "#00BD7E"
                 });
                 isLoaderActive = true;

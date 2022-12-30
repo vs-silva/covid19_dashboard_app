@@ -1,7 +1,7 @@
 <template>
   <ul>
-    <li v-for="country in countriesList" v-bind:key="country['slug']" class="u-pointer-cursor">
-      <span @click="requestCountryReportData(country['slug'])">{{country['country']}}</span>
+    <li v-for="country in countriesList" v-bind:key="country['slug']" class="u-pointer-cursor" @click="requestCountryReportData(country['slug'])">
+      <span>{{country['country']}}</span>
     </li>
   </ul>
 </template>
