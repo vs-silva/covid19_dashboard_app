@@ -1,5 +1,5 @@
 <template>
-  <h1>{{country.country}}</h1>
+  <h1 id="reporterTitle">{{country.country}}</h1>
 
   <div id="chart-main-container">
     <div id="active-chart-canvas-container" class="u-chart-canvas-container">
@@ -66,8 +66,20 @@ watchEffect(() => {
   overflow-y: scroll;
 }
 
+#reporterTitle {
+  color: #00BD7E;
+  font-weight: bold;
+}
+
 .u-chart-canvas-container {
   width: 100%;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
+
+.u-chart-canvas-container:last-of-type {
+  margin-bottom: 0;
+}
+
+
 </style>
